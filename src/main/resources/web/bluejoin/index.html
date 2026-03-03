@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlueJoin Login</title>
+    <link rel="stylesheet" href="/bluejoin/app.css">
+</head>
+<body>
+<main class="container">
+    <section class="panel">
+        <h1>BlueJoin</h1>
+        <p class="muted">Login to prepare your web-player profile.</p>
+
+        <div id="prefixInfo" class="badge"></div>
+
+        <form id="loginForm">
+            <h2>Login</h2>
+            <label>Username <input id="loginUsername" required minlength="3" maxlength="16"></label>
+            <label>Password <input id="loginPassword" type="password" required minlength="6"></label>
+            <button type="submit">Login</button>
+        </form>
+
+        <form id="registerForm">
+            <h2>Register</h2>
+            <label>Username <input id="registerUsername" required minlength="3" maxlength="16"></label>
+            <label>Password <input id="registerPassword" type="password" required minlength="6"></label>
+            <button type="submit">Create Account</button>
+        </form>
+
+        <p id="message" class="message"></p>
+    </section>
+</main>
+<script src="/bluejoin/login.js"></script>
+</body>
+</html>

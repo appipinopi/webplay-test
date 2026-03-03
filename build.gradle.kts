@@ -3,7 +3,7 @@ plugins {
     id("com.gradleup.shadow") version "9.2.2"
 }
 
-group = "com.example.exampleaddon"
+group = "com.bluejoin.addon"
 version = "1.0"
 
 repositories {
@@ -12,13 +12,8 @@ repositories {
 }
 
 dependencies {
-    // enable only one of the below:
     compileOnly ( "de.bluecolored:bluemap-api:2.7.6" )
-    //compileOnly ( "de.bluecolored:bluemap-core:5.13" )
-    //compileOnly ( "de.bluecolored:bluemap-common:5.13" )
-
-    // add more libraries if needed
-    //implementation ( "some.example:library:1.0.0" )
+    compileOnly ( "de.bluecolored:bluemap-common:5.13" )
 }
 
 java {

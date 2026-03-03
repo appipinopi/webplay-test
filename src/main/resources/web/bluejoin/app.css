@@ -1,0 +1,124 @@
+:root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-2: #334155;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #22c55e;
+    --accent-2: #16a34a;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top, #1e293b, #0f172a 60%);
+    color: var(--text);
+}
+
+.container {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 16px;
+}
+
+.panel {
+    width: min(560px, 100%);
+    background: color-mix(in srgb, var(--surface) 90%, transparent);
+    border: 1px solid var(--surface-2);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+h1, h2 {
+    margin: 0 0 10px;
+}
+
+h2 {
+    font-size: 1rem;
+    margin-top: 18px;
+}
+
+.muted {
+    color: var(--muted);
+    margin-bottom: 16px;
+}
+
+.badge {
+    display: inline-block;
+    background: #14532d;
+    color: #dcfce7;
+    border-radius: 999px;
+    padding: 6px 12px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+}
+
+form {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+label {
+    display: grid;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #475569;
+    background: #0b1220;
+    color: var(--text);
+}
+
+button, .linkBtn {
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 600;
+    background: var(--accent);
+    color: #052e16;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover, .linkBtn:hover {
+    background: var(--accent-2);
+}
+
+.secondary {
+    background: #475569;
+    color: var(--text);
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.meta {
+    border: 1px solid var(--surface-2);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    display: grid;
+    gap: 6px;
+}
+
+.message {
+    min-height: 1.4em;
+    color: #facc15;
+}

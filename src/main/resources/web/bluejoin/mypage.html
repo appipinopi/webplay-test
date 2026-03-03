@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlueJoin MyPage</title>
+    <link rel="stylesheet" href="/bluejoin/app.css">
+</head>
+<body>
+<main class="container">
+    <section class="panel">
+        <h1>MyPage</h1>
+        <p class="muted">Configure your web-player profile before joining.</p>
+
+        <div class="meta">
+            <div>Account: <strong id="username">-</strong></div>
+            <div>Web Player Name: <strong id="webPlayerName">-</strong></div>
+        </div>
+
+        <form id="profileForm">
+            <label>Display Name (optional)
+                <input id="displayName" maxlength="32" placeholder="Shown on MyPage">
+            </label>
+            <label>Skin URL (optional)
+                <input id="skinUrl" placeholder="https://example.com/skin.png">
+            </label>
+            <button type="submit">Save Profile</button>
+        </form>
+
+        <div class="actions">
+            <button id="logoutBtn" class="secondary">Logout</button>
+            <a class="linkBtn" href="/bluejoin/index.html">Back to Login</a>
+        </div>
+
+        <p id="message" class="message"></p>
+    </section>
+</main>
+<script src="/bluejoin/mypage.js"></script>
+</body>
+</html>
