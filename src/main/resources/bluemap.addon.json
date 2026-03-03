@@ -1,0 +1,6 @@
+{
+  "id": "exampleaddon",
+  "entrypoint": "com.example.exampleaddon.ExampleAddon",
+  "dependencies": [],
+  "soft-dependencies": []
+}
