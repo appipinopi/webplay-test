@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlueJoin Register</title>
+    <link rel="stylesheet" href="/bluejoin/app.css">
+</head>
+<body>
+<main class="container">
+    <section class="panel">
+        <h1>Create Account</h1>
+        <p class="muted">One account per email address.</p>
+        <div id="prefixInfo" class="badge"></div>
+
+        <form id="registerForm">
+            <label>Username <input id="registerUsername" required minlength="3" maxlength="16"></label>
+            <label>Email <input id="registerEmail" type="email" required></label>
+            <label>Password <input id="registerPassword" type="password" required minlength="6"></label>
+            <button type="submit">Create Account</button>
+        </form>
+
+        <div class="actions">
+            <a class="linkBtn secondary" href="/bluejoin/login.html">Login</a>
+            <a class="linkBtn secondary" href="/bluejoin/index.html">Back</a>
+        </div>
+        <p id="message" class="message"></p>
+    </section>
+</main>
+<script src="/bluejoin/register.js"></script>
+</body>
+</html>

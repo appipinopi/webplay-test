@@ -56,8 +56,9 @@ public final class BlueJoinHttpApi implements HttpRequestHandler {
 
         JsonObject body = parseBody(request);
         String username = get(body, "username");
+        String email = get(body, "email");
         String password = get(body, "password");
-        AccountService.RegisterResult result = accountService.register(username, password);
+        AccountService.RegisterResult result = accountService.register(username, email, password);
         if (!result.success()) {
             if ("username_exists".equals(result.error())) {
                 return json(HttpStatusCode.BAD_REQUEST, Map.of("ok", false, "error", result.error()));
@@ -70,9 +71,9 @@ public final class BlueJoinHttpApi implements HttpRequestHandler {
 
     private HttpResponse handleLogin(HttpRequest request) {
         JsonObject body = parseBody(request);
-        String username = get(body, "username");
+        String email = get(body, "email");
         String password = get(body, "password");
-        String token = accountService.login(username, password);
+        String token = accountService.login(email, password);
         if (token == null) {
             return json(HttpStatusCode.UNAUTHORIZED, Map.of("ok", false, "error", "invalid_credentials"));
         }
@@ -82,6 +83,7 @@ public final class BlueJoinHttpApi implements HttpRequestHandler {
         response.put("ok", true);
         response.put("token", token);
         response.put("username", user.username());
+        response.put("email", user.email());
         response.put("webPlayerName", config.getWebPlayerPrefix() + user.username());
         response.put("skinUrl", user.skinUrl());
         response.put("displayName", user.displayName());
@@ -104,6 +106,7 @@ public final class BlueJoinHttpApi implements HttpRequestHandler {
         Map<String, Object> response = new HashMap<>();
         response.put("ok", true);
         response.put("username", user.username());
+        response.put("email", user.email());
         response.put("webPlayerName", config.getWebPlayerPrefix() + user.username());
         response.put("skinUrl", user.skinUrl());
         response.put("displayName", user.displayName());
@@ -124,6 +127,7 @@ public final class BlueJoinHttpApi implements HttpRequestHandler {
         Map<String, Object> response = new HashMap<>();
         response.put("ok", true);
         response.put("username", updated.username());
+        response.put("email", updated.email());
         response.put("webPlayerName", config.getWebPlayerPrefix() + updated.username());
         response.put("skinUrl", updated.skinUrl());
         response.put("displayName", updated.displayName());

@@ -1,0 +1,7 @@
+/* Hide spectator controls in BlueMap UI */
+[data-mode="spectator"],
+.bluemap-mode-spectator,
+button[title*="Spectator"],
+button[aria-label*="Spectator"] {
+    display: none !important;
+}

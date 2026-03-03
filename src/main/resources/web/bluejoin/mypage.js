@@ -2,7 +2,7 @@ const token = localStorage.getItem("bluejoin_token");
 const message = document.getElementById("message");
 
 if (!token) {
-    window.location.href = "/bluejoin/index.html";
+    window.location.href = "/bluejoin/login.html";
 }
 
 async function api(path, method, body) {
@@ -23,6 +23,7 @@ function setMessage(text) {
 
 function fill(user) {
     document.getElementById("username").textContent = user.username || "-";
+    document.getElementById("email").textContent = user.email || "-";
     document.getElementById("webPlayerName").textContent = user.webPlayerName || "-";
     document.getElementById("skinUrl").value = user.skinUrl || "";
     document.getElementById("displayName").value = user.displayName || "";
@@ -32,7 +33,7 @@ async function loadMe() {
     const data = await api("/bluejoin/api/me", "GET");
     if (!data.ok) {
         localStorage.removeItem("bluejoin_token");
-        window.location.href = "/bluejoin/index.html";
+        window.location.href = "/bluejoin/login.html";
         return;
     }
     fill(data);
@@ -55,10 +56,10 @@ document.getElementById("profileForm").addEventListener("submit", async (e) => {
 document.getElementById("logoutBtn").addEventListener("click", async () => {
     await api("/bluejoin/api/logout", "POST");
     localStorage.removeItem("bluejoin_token");
-    window.location.href = "/bluejoin/index.html";
+    window.location.href = "/bluejoin/login.html";
 });
 
 loadMe().catch(() => {
     localStorage.removeItem("bluejoin_token");
-    window.location.href = "/bluejoin/index.html";
+    window.location.href = "/bluejoin/login.html";
 });

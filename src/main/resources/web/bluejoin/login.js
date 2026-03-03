@@ -21,38 +21,21 @@ async function loadConfig() {
     const data = await api("/bluejoin/api/config", "GET");
     if (data.ok) {
         prefixInfo.textContent = `Web player prefix: ${data.webPlayerPrefix}`;
-        const registerForm = document.getElementById("registerForm");
-        if (!data.allowRegistration) {
-            registerForm.style.display = "none";
-        }
     }
 }
 
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     setMessage("");
-    const username = document.getElementById("loginUsername").value.trim();
+    const email = document.getElementById("loginEmail").value.trim();
     const password = document.getElementById("loginPassword").value;
-    const data = await api("/bluejoin/api/login", "POST", { username, password });
+    const data = await api("/bluejoin/api/login", "POST", { email, password });
     if (!data.ok) {
         setMessage("Login failed: " + (data.error || "unknown"));
         return;
     }
     localStorage.setItem("bluejoin_token", data.token);
     window.location.href = "/bluejoin/mypage.html";
-});
-
-document.getElementById("registerForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    setMessage("");
-    const username = document.getElementById("registerUsername").value.trim();
-    const password = document.getElementById("registerPassword").value;
-    const data = await api("/bluejoin/api/register", "POST", { username, password });
-    if (!data.ok) {
-        setMessage("Register failed: " + (data.error || "unknown"));
-        return;
-    }
-    setMessage("Register completed. You can now login.");
 });
 
 loadConfig().catch(() => setMessage("Failed to load config"));

@@ -44,7 +44,7 @@ public class BlueJoinAddon implements Runnable {
             AccountService accountService = new AccountService(dataDirectory, config.getSessionHours());
             apiHandler = new BlueJoinHttpApi(accountService, config);
 
-            writeWebAssets(webRoot, config);
+            writeWebAssets(webApp, webRoot, config);
             registerApiRoutes(api);
         } catch (Exception e) {
             throw new IllegalStateException("Failed to initialize bluejoin addon", e);
@@ -73,17 +73,25 @@ public class BlueJoinAddon implements Runnable {
         registered = true;
     }
 
-    private void writeWebAssets(Path webRoot, BlueJoinConfig config) throws IOException {
+    private void writeWebAssets(WebApp webApp, Path webRoot, BlueJoinConfig config) throws IOException {
         copyResource("web/bluejoin/index.html", webRoot.resolve("bluejoin/index.html"));
+        copyResource("web/bluejoin/login.html", webRoot.resolve("bluejoin/login.html"));
+        copyResource("web/bluejoin/register.html", webRoot.resolve("bluejoin/register.html"));
         copyResource("web/bluejoin/mypage.html", webRoot.resolve("bluejoin/mypage.html"));
         copyResource("web/bluejoin/app.css", webRoot.resolve("bluejoin/app.css"));
         copyResource("web/bluejoin/login.js", webRoot.resolve("bluejoin/login.js"));
+        copyResource("web/bluejoin/register.js", webRoot.resolve("bluejoin/register.js"));
         copyResource("web/bluejoin/mypage.js", webRoot.resolve("bluejoin/mypage.js"));
+        copyResource("web/bluejoin/guard.js", webRoot.resolve("bluejoin/guard.js"));
+        copyResource("web/bluejoin/guard.css", webRoot.resolve("bluejoin/guard.css"));
         Files.writeString(
                 webRoot.resolve("bluejoin/runtime-config.json"),
                 GSON.toJson(config),
                 StandardCharsets.UTF_8
         );
+        // BlueMap's main index will load these, so map view requires login and spectator controls are hidden.
+        webApp.registerScript("/bluejoin/guard.js");
+        webApp.registerStyle("/bluejoin/guard.css");
     }
 
     private void copyResource(String resourcePath, Path target) throws IOException {
